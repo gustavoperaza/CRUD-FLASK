@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Usuarios Registrados</h1>
+
+        <div class="messages">
+            {% with messages = get_flashed_messages() %}
+                 {% if messages %}
+                 <ul>
+                {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+        </div>
+        <a href="{{ url_for('crear') }}" class="create-btn">➕Crear nuevo usuario</a>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo Electrónico</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.correo}}</td>
+                        <td class="axtion-linls">
+                            <a href="{{ur_for('editar',id=usuario.id)}}">✏️ Editar</a>
+                            <span class="separator">|</span>
+                            <a href="{{ur_for('eliminar',id=usuario.id)}}">🗑️ Eliminar</a>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
+</html>

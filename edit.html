@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2980b9;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✏️ Editar Usuario</h1>
+
+        <form method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" value="{{ usuario.nombre }}" required>
+
+            <label for="correo">Correo:</label>
+            <input type="email" name="correo" value="{{ usuario.correo }}" required>
+
+            <label for="password">Nueva Contraseña:</label>
+            <input type="password" name="password" placeholder="(deja en blanco para no cambiar)">
+
+            <button type="submit">Actualizar Usuario</button>
+        </form>
+
+        <a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a>
+    </div>
+</body>
+</html>

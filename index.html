@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Usuarios Registrados</h1>
+
+        <div class="messages">
+            {% with messages = get_flashed_messages() %}
+                 {% if messages %}
+                 <ul>
+                {% for message in messages %}
+            <li>✅{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+        </div>
+        <a href="{{ url_for('crear') }}" class="create-btn">➕ Crear nuevo usuario</a>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>CORREO ELECTRÓNICO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.correo }}</td>
+                        <td class="action-links">
+                            <a href="{{ url_for('editar', id=usuario.id) }}">✏️ Editar</a>
+                            <span class="separator">|</span>
+                            <a href="{{ url_for('eliminar', id=usuario.id) }}">🗑️ Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
